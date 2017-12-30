@@ -1,0 +1,3 @@
+rootProject.name = 'nativeNavigationStarter'
+
+include ':app'
