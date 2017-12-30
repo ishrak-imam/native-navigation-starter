@@ -8,7 +8,7 @@ import {
 
 import Application from '../../navigation/root';
 
-const login = true;
+const login = false;
 
 const at = {
   auth: {screen: 'Auth', title: 'Welcome'},

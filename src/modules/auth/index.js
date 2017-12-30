@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {
-  View, Text
-} from 'react-native';
+  Tile, Text
+} from '@shoutem/ui';
 
 export default class Auth extends Component {
   render () {
     return (
-      <View>
+      <Tile styleName='text-centric'>
         <Text>Auth</Text>
-      </View>
+      </Tile>
     );
   }
 }

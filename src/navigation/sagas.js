@@ -1,8 +1,6 @@
 
 import { createAction } from 'redux-act';
-
 import { all, takeLatest } from 'redux-saga/effects';
-
 import { Navigator } from 'react-native-navigation';
 
 const getNavInstance = (params) => {
