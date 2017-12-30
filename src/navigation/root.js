@@ -13,7 +13,6 @@ import Store from '../store/configure';
 
 // navigation style configuration
 const navigatorStyle = {
-
 };
 
 class Application {
@@ -52,4 +51,6 @@ class Application {
   }
 }
 
-export default App = new Application(Store, Provider); // singleton
+const App = new Application(Store, Provider); // singleton
+
+export default App;

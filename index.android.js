@@ -1,2 +1,2 @@
 
-import NativeNavigationStarter from './src/app';
+import './src/app';
