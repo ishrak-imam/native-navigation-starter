@@ -2,10 +2,11 @@
 import { Navigation } from 'react-native-navigation';
 
 import Auth from '../modules/auth';
+import SignUp from '../modules/auth/signUp';
 import Home from '../modules/home';
 
 // app initialization action
-import { init } from '../modules/auth/reducer';
+import { init } from '../modules/auth/action';
 
 // store initialization
 import { Provider } from 'react-redux';
@@ -30,6 +31,7 @@ class Application {
   _configureScreens (Store, Provider) {
     const screens = {
       Auth,
+      SignUp,
       Home
     };
     Object.keys(screens).map(key => {

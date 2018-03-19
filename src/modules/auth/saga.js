@@ -1,6 +1,7 @@
 
-import {call, put, takeLatest} from 'redux-saga/effects';
-import {init, startApp} from './reducer';
+import {call, put} from 'redux-saga/effects';
+import {takeFirst} from '../../utils/sagaHelpers';
+import {init, startApp} from './action';
 import Application from '../../navigation';
 
 const login = false;
@@ -11,7 +12,7 @@ const at = {
 };
 
 export function * watchStartApp () {
-  yield takeLatest(startApp.getType(), workerStartApp);
+  yield takeFirst(startApp.getType(), workerStartApp);
 }
 
 function * workerStartApp (action) {
@@ -19,11 +20,11 @@ function * workerStartApp (action) {
 }
 
 export function * watchInit () {
-  yield takeLatest(init.getType(), workerInit);
+  yield takeFirst(init.getType(), workerInit);
 }
 
 function * workerInit () {
-  (login)
+  login
     ? yield put(startApp(at.home))
     : yield put(startApp(at.auth));
 }

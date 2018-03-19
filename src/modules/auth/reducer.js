@@ -1,17 +1,12 @@
 
-import {createAction, createReducer} from 'redux-act';
+import {createReducer} from '../../utils/reduxHelpers';
 
-const AUTH_INITIAL_STATE = {
+const LOGIN = {
+  checking: false,
   loading: false,
-  loggedIn: false,
   user: null
 };
 
-export const init = createAction('INIT');
-export const startApp = createAction('START_APP');
+export const login = createReducer(LOGIN, {
 
-const auth = createReducer({
-
-}, AUTH_INITIAL_STATE);
-
-export default auth;
+});
