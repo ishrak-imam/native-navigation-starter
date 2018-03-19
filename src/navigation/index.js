@@ -1,5 +1,6 @@
 
 import { Navigation } from 'react-native-navigation';
+import {connectTheme} from '../utils/theme';
 
 import Auth from '../modules/auth';
 import SignUp from '../modules/auth/signUp';
@@ -35,7 +36,7 @@ class Application {
       Home
     };
     Object.keys(screens).map(key => {
-      Navigation.registerComponent(`${key}`, () => screens[key], Store, Provider);
+      Navigation.registerComponent(`${key}`, () => connectTheme(screens[key]), Store, Provider);
     });
   }
 

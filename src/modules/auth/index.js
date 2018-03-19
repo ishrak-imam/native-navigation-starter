@@ -1,33 +1,22 @@
 import React, {Component} from 'react';
 import {
-  Tile, Text, Button
+  Screen, Text, View, Button
 } from '@shoutem/ui';
-import {connect} from 'react-redux';
-import {showModal} from '../../navigation/saga';
-import {getNavInfo} from '../../utils/navigation';
 
-class Auth extends Component {
-  constructor (props) {
-    super(props);
-    this._navigate = this._navigate.bind(this);
-  }
-
-  _navigate () {
-    const scene = {screen: 'SignUp', title: 'Sign up'};
-    const navInfo = getNavInfo(this.props.navigator);
-    this.props.dispatch(showModal({scene, navInfo}));
-  }
-
+export default class Auth extends Component {
   render () {
     return (
-      <Tile styleName='text-centric'>
-        <Text>Auth</Text>
-        <Button onPress={this._navigate}>
-          <Text>nav</Text>
-        </Button>
-      </Tile>
+      <Screen styleName='paper'>
+        <View styleName='horizontal'>
+          <Button styleName='confirmation'>
+            <Text>REMOVE</Text>
+          </Button>
+
+          <Button styleName='confirmation secondary'>
+            <Text>UPDATE</Text>
+          </Button>
+        </View>
+      </Screen>
     );
   }
 }
-
-export default connect(null, dispatch => ({dispatch}))(Auth);
