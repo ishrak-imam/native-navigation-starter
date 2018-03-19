@@ -1,12 +1,7 @@
 
 import {call, put, takeLatest} from 'redux-saga/effects';
-
-import {
-  init,
-  startApp
-} from './reducers';
-
-import Application from '../../navigation/root';
+import {init, startApp} from './reducer';
+import Application from '../../navigation';
 
 const login = false;
 

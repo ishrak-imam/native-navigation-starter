@@ -1,15 +1,15 @@
 
 import { Navigation } from 'react-native-navigation';
 
-import Auth from '../modules/auth/index';
-import Home from '../modules/home/index';
+import Auth from '../modules/auth';
+import Home from '../modules/home';
 
 // app initialization action
-import { init } from '../modules/auth/reducers';
+import { init } from '../modules/auth/reducer';
 
 // store initialization
 import { Provider } from 'react-redux';
-import Store from '../store/configure';
+import Store from '../store';
 
 // navigation style configuration
 const navigatorStyle = {

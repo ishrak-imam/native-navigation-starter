@@ -1,4 +1,4 @@
-import Application from './navigation/root';
+import Application from './navigation';
 
 Application.run();
 
