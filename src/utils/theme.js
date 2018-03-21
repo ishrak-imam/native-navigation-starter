@@ -25,7 +25,7 @@ export const connectTheme = Scene => {
     render () {
       return (
         <StyleProvider style={customTheme}>
-          <Scene />
+          <Scene {...this.props} />
         </StyleProvider>
       );
     }

@@ -5,6 +5,25 @@ import {
 import {KeyboardAvoidingView} from 'react-native';
 
 export default class Auth extends Component {
+  constructor (props) {
+    super(props);
+    const {navigator} = props;
+    navigator.setButtons({
+      leftButtons: [
+        {
+          id: 'sideMenu',
+          component: 'LeftDrawerButton',
+          passProps: {
+            navigator
+          }
+        }
+      ]
+    });
+    // navigator.setDrawerEnabled({
+    //   side: 'left',
+    //   enabled: false
+    // });
+  }
   render () {
     return (
       <Screen styleName='paper'>

@@ -6,6 +6,9 @@ import Auth from '../modules/auth';
 import SignUp from '../modules/auth/signUp';
 import Home from '../modules/home';
 
+import LeftDrawer from '../modules/drawer/left';
+import LeftDrawerButton from '../modules/drawer/leftButton';
+
 // app initialization action
 import { init } from '../modules/auth/action';
 
@@ -33,7 +36,9 @@ class Application {
     const screens = {
       Auth,
       SignUp,
-      Home
+      Home,
+      LeftDrawer,
+      LeftDrawerButton
     };
     Object.keys(screens).map(key => {
       Navigation.registerComponent(`${key}`, () => connectTheme(screens[key]), Store, Provider);
@@ -45,12 +50,18 @@ class Application {
   }
 
   startApp ({ screen, title }) {
-    const app = {
-      screen,
-      title,
-      navigatorStyle
-    };
-    Navigation.startSingleScreenApp({ screen: app });
+    Navigation.startSingleScreenApp({
+      screen: {
+        screen,
+        title,
+        navigatorStyle
+      },
+      drawer: {
+        left: {
+          screen: 'LeftDrawer'
+        }
+      }
+    });
   }
 }
 
