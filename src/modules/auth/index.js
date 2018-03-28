@@ -42,6 +42,11 @@ export default class Auth extends Component {
     this.kbrdHide = Keyboard.addListener('keyboardDidHide', this._onKbrdHide);
   }
 
+  componentWillUnmount () {
+    this.kbrdShow.remove();
+    this.kbrdHide.remove();
+  }
+
   _onTabPress (tab) {
     this.setState({tab});
   }
