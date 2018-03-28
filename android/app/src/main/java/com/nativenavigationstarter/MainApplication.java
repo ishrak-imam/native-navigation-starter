@@ -68,7 +68,7 @@ public class MainApplication extends NavigationApplication {
             new PhotoViewPackage(),
             new LinearGradientPackage(),
             new VectorIconsPackage(),
-            new RNSpinkitPackage(),
+            new RNSpinkitPackage()
          );
      }
 
