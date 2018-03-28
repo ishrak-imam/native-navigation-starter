@@ -1,6 +1,6 @@
 
 export const LOGIN_FORM = {
-  name: 'lognin',
+  name: 'login',
   submitText: 'LOGIN',
   fields: [
     {
