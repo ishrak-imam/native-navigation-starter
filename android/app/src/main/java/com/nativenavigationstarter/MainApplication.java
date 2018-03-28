@@ -3,6 +3,7 @@ package com.nativenavigationstarter;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.react.rnspinkit.RNSpinkitPackage;
 import com.reactnative.photoview.PhotoViewPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -66,7 +67,8 @@ public class MainApplication extends NavigationApplication {
             // eg. new VectorIconsPackage()
             new PhotoViewPackage(),
             new LinearGradientPackage(),
-            new VectorIconsPackage()
+            new VectorIconsPackage(),
+            new RNSpinkitPackage(),
          );
      }
 

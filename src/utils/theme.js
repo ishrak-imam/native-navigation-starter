@@ -6,6 +6,7 @@ import {StyleProvider} from '@shoutem/theme';
 const {width} = Dimensions.get('window');
 const theme = getTheme();
 
+export const baseColor = '#000000';
 export const errorColor = '#a94442';
 
 const textInput = {

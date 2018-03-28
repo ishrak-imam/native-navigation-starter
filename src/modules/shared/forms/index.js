@@ -7,6 +7,7 @@ import {
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import Loader from '../loader';
 import {errorColor} from '../../../utils/theme';
 
 const validate = (values, props) => {
@@ -56,12 +57,15 @@ class Form extends Component {
       <View>
         {this._renderInputs()}
         <View style={{marginTop: 15}}>
-          <Button
+          {/* <Button
             styleName='secondary auth'
             onPress={handleSubmit(this._handleSubmit)}
           >
             <Text>{config.submitText}</Text>
-          </Button>
+          </Button> */}
+          <View style={{alignItems: 'center'}}>
+            <Loader visible size={40} />
+          </View>
         </View>
       </View>
     );
