@@ -7,7 +7,7 @@ import Application from '../../navigation';
 const login = false;
 
 const at = {
-  auth: {screen: 'Auth', title: 'Welcome'},
+  auth: {screen: 'Auth', navigatorStyle: {navBarHidden: true}},
   home: {screen: 'Home', title: 'Home'}
 };
 

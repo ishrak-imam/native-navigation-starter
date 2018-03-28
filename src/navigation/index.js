@@ -17,8 +17,8 @@ import { Provider } from 'react-redux';
 import Store from '../store';
 
 // navigation style configuration
-const navigatorStyle = {
-};
+// const navigatorStyle = {
+// };
 
 class Application {
   constructor (Store, Provider) {
@@ -49,7 +49,7 @@ class Application {
     this._store.dispatch(init());
   }
 
-  startApp ({ screen, title }) {
+  startApp ({ screen, title, navigatorStyle }) {
     Navigation.startSingleScreenApp({
       screen: {
         screen,

@@ -1,43 +1,105 @@
 import React, {Component} from 'react';
 import {
-  Screen, TextInput
+  Screen, View,
+  Button, Text, ScrollView
 } from '@shoutem/ui';
-import {KeyboardAvoidingView} from 'react-native';
+import {
+  KeyboardAvoidingView, Animated, Keyboard
+} from 'react-native';
+import Form from '../shared/forms';
+import { LOGIN_FORM, REGISTER_FORM } from '../shared/forms/config';
+import {bindFunctions} from '../../utils';
 
 export default class Auth extends Component {
   constructor (props) {
     super(props);
     const {navigator} = props;
-    navigator.setButtons({
-      leftButtons: [
-        {
-          id: 'sideMenu',
-          component: 'LeftDrawerButton',
-          passProps: {
-            navigator
-          }
-        }
-      ]
-    });
-    // navigator.setDrawerEnabled({
-    //   side: 'left',
-    //   enabled: false
+    // navigator.setButtons({
+    //   leftButtons: [
+    //     {
+    //       id: 'sideMenu',
+    //       component: 'LeftDrawerButton',
+    //       passProps: {
+    //         navigator
+    //       }
+    //     }
+    //   ]
     // });
+    navigator.setDrawerEnabled({
+      side: 'left',
+      enabled: false
+    });
+    this.state = {
+      tab: 'login'
+    };
+    bindFunctions.call(this, [
+      '_onTabPress', '_logoResize',
+      '_onKbrdShow', '_onKbrdHide'
+    ]);
+
+    this.logoDim = new Animated.Value(100);
+    this.kbrdShow = Keyboard.addListener('keyboardDidShow', this._onKbrdShow);
+    this.kbrdHide = Keyboard.addListener('keyboardDidHide', this._onKbrdHide);
   }
+
+  _onTabPress (tab) {
+    this.setState({tab});
+  }
+
+  _logoResize (isKbrdOpen) {
+    Animated.timing(
+      this.logoDim,
+      {
+        toValue: isKbrdOpen ? 50 : 100,
+        duration: 300
+      }
+    ).start();
+  }
+
+  _onKbrdShow () {
+    this._logoResize(true);
+  }
+
+  _onKbrdHide () {
+    this._logoResize(false);
+  }
+
   render () {
+    const {tab} = this.state;
     return (
       <Screen styleName='paper'>
         <KeyboardAvoidingView behavior='padding' style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <TextInput
-            placeholder={'Email'}
-            onChangeText={(text) => console.log(text)}
-          />
-          <TextInput
-            style={{marginTop: 10}}
-            placeholder={'Password'}
-            secureTextEntry
-            onChangeText={(text) => console.log(text)}
-          />
+          <View styleName='vertical h-center v-end' style={{flex: 1}}>
+            <Animated.View style={{width: this.logoDim, height: this.logoDim, backgroundColor: 'black'}} />
+          </View>
+          <View styleName='vertical h-center' style={{flex: 3}}>
+            <View styleName='horizontal'>
+              <Button
+                styleName={`full-width ${tab === 'login' ? '' : 'muted'}`}
+                onPress={() => this._onTabPress('login')}
+              >
+                <Text>LOGIN</Text>
+              </Button>
+              <Button
+                styleName={`full-width ${tab === 'register' ? '' : 'muted'}`}
+                onPress={() => this._onTabPress('register')}
+              >
+                <Text>REGISTER</Text>
+              </Button>
+            </View>
+            <ScrollView
+              keyboardShouldPersistTaps='always'
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{paddingBottom: 10}}
+            >
+              {
+                (tab === 'login')
+                  ? <Form key={LOGIN_FORM.name} onSubmit={(val) => console.log(val)} config={LOGIN_FORM} />
+                  : <Form key={REGISTER_FORM.name} onSubmit={(val) => console.log(val)} config={REGISTER_FORM} />
+              }
+            </ScrollView>
+
+          </View>
         </KeyboardAvoidingView>
       </Screen>
     );
