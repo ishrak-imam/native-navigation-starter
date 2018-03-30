@@ -1,14 +1,25 @@
+
 import React, {Component} from 'react';
 import {
-  View, Text
-} from 'react-native';
+  Screen, Tile, Button,
+  Text
+} from '@shoutem/ui';
 
-export default class Home extends Component {
+import {connect} from 'react-redux';
+import {logoutReq} from '../auth/action';
+
+class Home extends Component {
   render () {
     return (
-      <View>
-        <Text>Home</Text>
-      </View>
+      <Screen>
+        <Tile styleName='text-centric'>
+          <Button onPress={() => this.props.dispatch(logoutReq())}>
+            <Text>Logout</Text>
+          </Button>
+        </Tile>
+      </Screen>
     );
   }
 }
+
+export default connect(null, dispatch => ({dispatch}))(Home);

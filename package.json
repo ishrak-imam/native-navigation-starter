@@ -1,5 +1,5 @@
 {
-  "name": "nativeNavigationStarter",
+  "name": "native-navigation-starter",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@shoutem/ui": "^0.23.4",
+    "jwt-decode": "^2.2.0",
     "react": "^16.2.0",
     "react-native": "^0.54.2",
     "react-native-navigation": "^1.1.409",

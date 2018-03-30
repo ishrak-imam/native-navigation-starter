@@ -52,20 +52,23 @@ class Form extends Component {
   }
 
   render () {
-    const {handleSubmit, config} = this.props;
+    const {handleSubmit, config, loading} = this.props;
     return (
       <View>
         {this._renderInputs()}
         <View style={{marginTop: 15}}>
-          {/* <Button
-            styleName='secondary auth'
-            onPress={handleSubmit(this._handleSubmit)}
-          >
-            <Text>{config.submitText}</Text>
-          </Button> */}
-          <View style={{alignItems: 'center'}}>
-            <Loader visible size={40} />
-          </View>
+          {
+            loading
+              ? <View style={{alignItems: 'center'}}>
+                <Loader visible size={40} />
+              </View>
+              : <Button
+                styleName='secondary auth'
+                onPress={handleSubmit(this._handleSubmit)}
+              >
+                <Text>{config.submitText}</Text>
+              </Button>
+          }
         </View>
       </View>
     );

@@ -6,11 +6,14 @@ import {
 import {
   KeyboardAvoidingView, Animated, Keyboard
 } from 'react-native';
+import {connect} from 'react-redux';
 import Form from '../shared/forms';
 import { LOGIN_FORM, REGISTER_FORM } from '../shared/forms/config';
 import {bindFunctions} from '../../utils';
+import {registerReq, loginReq} from './action';
+import {getLogin, getRegister} from './store';
 
-export default class Auth extends Component {
+class Auth extends Component {
   constructor (props) {
     super(props);
     const {navigator} = props;
@@ -34,7 +37,8 @@ export default class Auth extends Component {
     };
     bindFunctions.call(this, [
       '_onTabPress', '_logoResize',
-      '_onKbrdShow', '_onKbrdHide'
+      '_onKbrdShow', '_onKbrdHide',
+      '_login', '_register'
     ]);
 
     this.logoDim = new Animated.Value(100);
@@ -69,8 +73,18 @@ export default class Auth extends Component {
     this._logoResize(false);
   }
 
+  _login (obj) {
+    obj.strategy = 'local';
+    this.props.dispatch(loginReq(obj));
+  }
+
+  _register (obj) {
+    this.props.dispatch(registerReq(obj));
+  }
+
   render () {
     const {tab} = this.state;
+    const {login, register} = this.props;
     return (
       <Screen styleName='paper'>
         <KeyboardAvoidingView behavior='padding' style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -99,8 +113,8 @@ export default class Auth extends Component {
             >
               {
                 (tab === 'login')
-                  ? <Form key={LOGIN_FORM.name} onSubmit={(val) => console.log(val)} config={LOGIN_FORM} />
-                  : <Form key={REGISTER_FORM.name} onSubmit={(val) => console.log(val)} config={REGISTER_FORM} />
+                  ? <Form key={LOGIN_FORM.name} loading={login.loading} onSubmit={this._login} config={LOGIN_FORM} />
+                  : <Form key={REGISTER_FORM.name} loading={register.login} onSubmit={this._register} config={REGISTER_FORM} />
               }
             </ScrollView>
 
@@ -110,6 +124,13 @@ export default class Auth extends Component {
     );
   }
 }
+
+const stateToProps = state => ({
+  login: getLogin(state),
+  register: getRegister(state)
+});
+
+export default connect(stateToProps, dispatch => ({dispatch}))(Auth);
 
 // import React from 'react';
 // import {

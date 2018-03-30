@@ -33,8 +33,13 @@ export const REGISTER_FORM = {
   submitText: 'REGISTER',
   fields: [
     {
-      name: 'username',
-      placeholder: 'User name *',
+      name: 'firstName',
+      placeholder: 'First name *',
+      autoCapitalize: 'none'
+    },
+    {
+      name: 'lastName',
+      placeholder: 'Last name *',
       autoCapitalize: 'none'
     },
     {
@@ -51,6 +56,12 @@ export const REGISTER_FORM = {
   ],
   validate: values => {
     const errors = {};
+    if (!values.firstName) {
+      errors.firstName = 'Enter first name';
+    }
+    if (!values.lastName) {
+      errors.lastName = 'Enter last name';
+    }
     if (!values.username) {
       errors.username = 'Enter user name';
     }
