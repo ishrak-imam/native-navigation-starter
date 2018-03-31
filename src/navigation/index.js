@@ -2,7 +2,8 @@
 import { Navigation } from 'react-native-navigation';
 import {connectTheme} from '../utils/theme';
 
-import Auth from '../modules/auth';
+import Signin from '../modules/auth/signin';
+import Register from '../modules/auth/register';
 import Home from '../modules/home';
 
 import LeftDrawer from '../modules/drawer/left';
@@ -33,7 +34,8 @@ class Application {
 
   _configureScreens (Store, Provider) {
     const screens = {
-      Auth,
+      Signin,
+      Register,
       Home,
       LeftDrawer,
       LeftDrawerButton

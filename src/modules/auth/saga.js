@@ -20,7 +20,7 @@ import {
 } from '../../api';
 
 const at = {
-  auth: {screen: 'Auth', navigatorStyle: {navBarHidden: true}},
+  auth: {screen: 'Signin', navigatorStyle: {navBarHidden: true}},
   home: {screen: 'Home', title: 'Home'}
 };
 

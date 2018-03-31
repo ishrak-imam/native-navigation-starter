@@ -1,19 +1,16 @@
+
 import React, {Component} from 'react';
-import {
-  Screen, View,
-  Button, Text, ScrollView
-} from '@shoutem/ui';
-import {
-  KeyboardAvoidingView, Animated, Keyboard
-} from 'react-native';
+import {Screen, View, ScrollView, Subtitle, TouchableOpacity} from '@shoutem/ui';
+import {KeyboardAvoidingView, Animated, Keyboard} from 'react-native';
 import {connect} from 'react-redux';
 import Form from '../shared/forms';
-import { LOGIN_FORM, REGISTER_FORM } from '../shared/forms/config';
-import {bindFunctions} from '../../utils';
-import {registerReq, loginReq} from './action';
-import {getLogin, getRegister} from './store';
+import {LOGIN_FORM} from '../shared/forms/config';
+import {bindFunctions, getNavInfo} from '../../utils';
+import {loginReq} from './action';
+import {pushScene} from '../../navigation/saga';
+import {getLogin} from './store';
 
-class Auth extends Component {
+class Signin extends Component {
   constructor (props) {
     super(props);
     const {navigator} = props;
@@ -32,13 +29,10 @@ class Auth extends Component {
       side: 'left',
       enabled: false
     });
-    this.state = {
-      tab: 'login'
-    };
     bindFunctions.call(this, [
-      '_onTabPress', '_logoResize',
-      '_onKbrdShow', '_onKbrdHide',
-      '_login', '_register'
+      '_logoResize', '_login',
+      '_register',
+      '_onKbrdShow', '_onKbrdHide'
     ]);
 
     this.logoDim = new Animated.Value(100);
@@ -49,10 +43,6 @@ class Auth extends Component {
   componentWillUnmount () {
     this.kbrdShow.remove();
     this.kbrdHide.remove();
-  }
-
-  _onTabPress (tab) {
-    this.setState({tab});
   }
 
   _logoResize (isKbrdOpen) {
@@ -78,59 +68,48 @@ class Auth extends Component {
     this.props.dispatch(loginReq(obj));
   }
 
-  _register (obj) {
-    this.props.dispatch(registerReq(obj));
+  _register () {
+    const navInfo = getNavInfo(this.props.navigator);
+    const scene = {
+      screen: 'Register',
+      title: 'Register'
+    };
+    this.props.dispatch(pushScene({scene, navInfo}));
   }
 
   render () {
-    const {tab} = this.state;
-    const {login, register} = this.props;
+    const {login} = this.props;
     return (
       <Screen styleName='paper'>
         <KeyboardAvoidingView behavior='padding' style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <View styleName='vertical h-center v-end' style={{flex: 1}}>
             <Animated.View style={{width: this.logoDim, height: this.logoDim, backgroundColor: 'black'}} />
           </View>
-          <View styleName='vertical h-center' style={{flex: 3}}>
-            <View styleName='horizontal'>
-              <Button
-                styleName={`full-width ${tab === 'login' ? '' : 'muted'}`}
-                onPress={() => this._onTabPress('login')}
-              >
-                <Text>LOGIN</Text>
-              </Button>
-              <Button
-                styleName={`full-width ${tab === 'register' ? '' : 'muted'}`}
-                onPress={() => this._onTabPress('register')}
-              >
-                <Text>REGISTER</Text>
-              </Button>
-            </View>
+          <View styleName='vertical h-center' style={{flex: 2}}>
             <ScrollView
               keyboardShouldPersistTaps='always'
               showsVerticalScrollIndicator={false}
-              contentContainerStyle={{paddingBottom: 10}}
+              contentContainerStyle={{paddingBottom: 10, paddingTop: 30}}
             >
-              {
-                (tab === 'login')
-                  ? <Form key={LOGIN_FORM.name} loading={login.loading} onSubmit={this._login} config={LOGIN_FORM} />
-                  : <Form key={REGISTER_FORM.name} loading={register.login} onSubmit={this._register} config={REGISTER_FORM} />
-              }
+              <Form key={LOGIN_FORM.name} loading={login.loading} onSubmit={this._login} config={LOGIN_FORM} />
             </ScrollView>
-
           </View>
         </KeyboardAvoidingView>
+        <TouchableOpacity onPress={this._register}>
+          <View styleName='vertical h-center' style={{padding: 15, borderTopWidth: 1, backgroundColor: '#DCDCDC'}}>
+            <Subtitle>Create New Account</Subtitle>
+          </View>
+        </TouchableOpacity>
       </Screen>
     );
   }
 }
 
 const stateToProps = state => ({
-  login: getLogin(state),
-  register: getRegister(state)
+  login: getLogin(state)
 });
 
-export default connect(stateToProps, dispatch => ({dispatch}))(Auth);
+export default connect(stateToProps, dispatch => ({dispatch}))(Signin);
 
 // import React from 'react';
 // import {

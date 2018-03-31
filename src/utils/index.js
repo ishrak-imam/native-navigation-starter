@@ -8,6 +8,11 @@ export function bindFunctions (functions) {
   });
 }
 
+export const getNavInfo = navigator => {
+  const { navigatorID, navigatorEventID, screenInstanceID } = navigator;
+  return { navigatorID, navigatorEventID, screenInstanceID };
+};
+
 export function getPayloadFromJwt (jwt) {
   return jwtDecode(jwt);
 }
