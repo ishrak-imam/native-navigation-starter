@@ -34,6 +34,7 @@ class Register extends Component {
           <ScrollView
             keyboardShouldPersistTaps='always'
             showsVerticalScrollIndicator={false}
+            contentContainerStyle={{paddingBottom: 10, paddingTop: 30}}
           >
             <Form key={REGISTER_FORM.name} loading={register.loading} onSubmit={this._register} config={REGISTER_FORM} />
           </ScrollView>

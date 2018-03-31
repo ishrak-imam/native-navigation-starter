@@ -11,7 +11,8 @@ export const LOGIN_FORM = {
     },
     { name: 'password',
       secureTextEntry: true,
-      placeholder: 'Password *'
+      placeholder: 'Password *',
+      autoCapitalize: 'none'
     }
   ],
   validate: values => {
@@ -51,12 +52,14 @@ export const REGISTER_FORM = {
     {
       name: 'password',
       secureTextEntry: true,
-      placeholder: 'Password *'
+      placeholder: 'Password *',
+      autoCapitalize: 'none'
     },
     {
       name: 'confirmPassword',
       secureTextEntry: true,
-      placeholder: 'Confirm password *'
+      placeholder: 'Confirm password *',
+      autoCapitalize: 'none'
     }
   ],
   validate: values => {
