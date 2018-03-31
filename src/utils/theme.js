@@ -10,11 +10,11 @@ export const baseColor = '#000000';
 export const errorColor = '#a94442';
 
 const textInput = {
-  borderWidth: 1,
+  borderBottomWidth: 1,
   width: width - 100,
   paddingVertical: 0,
-  height: 40,
-  borderRadius: 5
+  height: 40
+  // borderRadius: 5
 };
 
 const authTextInput = textInput;

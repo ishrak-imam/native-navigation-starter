@@ -52,6 +52,11 @@ export const REGISTER_FORM = {
       name: 'password',
       secureTextEntry: true,
       placeholder: 'Password *'
+    },
+    {
+      name: 'confirmPassword',
+      secureTextEntry: true,
+      placeholder: 'Confirm password *'
     }
   ],
   validate: values => {
@@ -62,9 +67,6 @@ export const REGISTER_FORM = {
     if (!values.lastName) {
       errors.lastName = 'Enter last name';
     }
-    if (!values.username) {
-      errors.username = 'Enter user name';
-    }
     if (!values.email) {
       errors.email = 'Enter email';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
@@ -72,6 +74,9 @@ export const REGISTER_FORM = {
     }
     if (!values.password) {
       errors.password = 'Enter password';
+    }
+    if (values.password !== values.confirmPassword) {
+      errors.confirmPassword = 'Confirm password does not match';
     }
     return errors;
   }

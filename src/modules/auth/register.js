@@ -30,11 +30,10 @@ class Register extends Component {
     const {register} = this.props;
     return (
       <Screen styleName='paper'>
-        <KeyboardAvoidingView behavior='padding' style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <KeyboardAvoidingView behavior='padding' style={{flex: 1, alignItems: 'center'}}>
           <ScrollView
             keyboardShouldPersistTaps='always'
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{paddingBottom: 10, paddingTop: 30}}
             >
             <Form key={REGISTER_FORM.name} loading={register.loading} onSubmit={this._register} config={REGISTER_FORM} />
           </ScrollView>

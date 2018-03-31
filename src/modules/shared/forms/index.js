@@ -56,7 +56,7 @@ class Form extends Component {
     return (
       <View>
         {this._renderInputs()}
-        <View style={{marginTop: 15}}>
+        <View style={{marginTop: 25}}>
           {
             loading
               ? <View style={{alignItems: 'center'}}>

@@ -19,6 +19,6 @@ export const createAction = type => {
   return action;
 };
 
-export const updateObject = (oldObject, newValues) => {
-  return {...oldObject, ...newValues};
+export const updateObject = (object, values) => {
+  return {...object, ...values};
 };
