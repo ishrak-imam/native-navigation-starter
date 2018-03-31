@@ -34,7 +34,7 @@ class Register extends Component {
           <ScrollView
             keyboardShouldPersistTaps='always'
             showsVerticalScrollIndicator={false}
-            >
+          >
             <Form key={REGISTER_FORM.name} loading={register.loading} onSubmit={this._register} config={REGISTER_FORM} />
           </ScrollView>
         </KeyboardAvoidingView>
