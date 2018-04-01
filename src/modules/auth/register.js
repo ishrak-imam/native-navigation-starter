@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react';
-import {Screen, ScrollView} from '@shoutem/ui';
+import {Screen, View, ScrollView} from '@shoutem/ui';
 import {KeyboardAvoidingView} from 'react-native';
 import {connect} from 'react-redux';
 import Form from '../shared/forms';
@@ -30,14 +30,24 @@ class Register extends Component {
     const {register} = this.props;
     return (
       <Screen styleName='paper'>
-        <KeyboardAvoidingView behavior='padding' style={{flex: 1, alignItems: 'center'}}>
-          <ScrollView
-            keyboardShouldPersistTaps='always'
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{paddingBottom: 10, paddingTop: 30}}
-          >
-            <Form key={REGISTER_FORM.name} loading={register.loading} onSubmit={this._register} config={REGISTER_FORM} />
-          </ScrollView>
+        <KeyboardAvoidingView
+          behavior='padding'
+          style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
+        >
+          <View styleName='vertical h-center' style={{flex: 1}}>
+            <ScrollView
+              keyboardShouldPersistTaps='always'
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{paddingBottom: 10, paddingTop: 10}}
+            >
+              <Form
+                key={REGISTER_FORM.name}
+                loading={register.loading}
+                onSubmit={this._register}
+                config={REGISTER_FORM}
+              />
+            </ScrollView>
+          </View>
         </KeyboardAvoidingView>
       </Screen>
     );

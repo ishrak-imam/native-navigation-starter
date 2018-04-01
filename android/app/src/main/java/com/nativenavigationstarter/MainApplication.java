@@ -54,26 +54,25 @@ import java.util.List;
 
 public class MainApplication extends NavigationApplication {
 
-     @Override
-     public boolean isDebug() {
-         // Make sure you are using BuildConfig from your own application
-         return BuildConfig.DEBUG;
-     }
+  @Override
+  public boolean isDebug() {
+    // Make sure you are using BuildConfig from your own application
+    return BuildConfig.DEBUG;
+  }
 
-     protected List<ReactPackage> getPackages() {
-         // Add additional packages you require here
-         // No need to add RnnPackage and MainReactPackage
-         return Arrays.<ReactPackage>asList(
-            // eg. new VectorIconsPackage()
-            new PhotoViewPackage(),
-            new LinearGradientPackage(),
-            new VectorIconsPackage(),
-            new RNSpinkitPackage()
-         );
-     }
+  protected List<ReactPackage> getPackages() {
+      // Add additional packages you require here
+      // No need to add RnnPackage and MainReactPackage
+    return Arrays.<ReactPackage>asList(
+      new PhotoViewPackage(),
+      new LinearGradientPackage(),
+      new VectorIconsPackage(),
+      new RNSpinkitPackage()
+    );
+  }
 
-     @Override
-     public List<ReactPackage> createAdditionalReactPackages() {
-         return getPackages();
-     }
- }
+  @Override
+  public List<ReactPackage> createAdditionalReactPackages() {
+    return getPackages();
+  }
+}

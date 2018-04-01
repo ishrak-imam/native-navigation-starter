@@ -1,6 +1,9 @@
 
 import React, {Component} from 'react';
-import {Screen, View, ScrollView, Subtitle, TouchableOpacity} from '@shoutem/ui';
+import {
+  Screen, View, ScrollView,
+  Subtitle, TouchableOpacity
+} from '@shoutem/ui';
 import {KeyboardAvoidingView, Animated, Keyboard} from 'react-native';
 import {connect} from 'react-redux';
 import Form from '../shared/forms';
@@ -81,9 +84,14 @@ class Signin extends Component {
     const {login} = this.props;
     return (
       <Screen styleName='paper'>
-        <KeyboardAvoidingView behavior='padding' style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <KeyboardAvoidingView
+          behavior='padding'
+          style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
+        >
           <View styleName='vertical h-center v-end' style={{flex: 1}}>
-            <Animated.View style={{width: this.logoDim, height: this.logoDim, backgroundColor: 'black'}} />
+            <Animated.View
+              style={{width: this.logoDim, height: this.logoDim, backgroundColor: 'black'}}
+            />
           </View>
           <View styleName='vertical h-center' style={{flex: 2}}>
             <ScrollView
@@ -91,12 +99,20 @@ class Signin extends Component {
               showsVerticalScrollIndicator={false}
               contentContainerStyle={{paddingBottom: 10, paddingTop: 30}}
             >
-              <Form key={LOGIN_FORM.name} loading={login.loading} onSubmit={this._login} config={LOGIN_FORM} />
+              <Form
+                key={LOGIN_FORM.name}
+                loading={login.loading}
+                onSubmit={this._login}
+                config={LOGIN_FORM}
+              />
             </ScrollView>
           </View>
         </KeyboardAvoidingView>
         <TouchableOpacity onPress={this._register}>
-          <View styleName='vertical h-center' style={{padding: 15, borderTopWidth: 1, backgroundColor: '#DCDCDC'}}>
+          <View
+            styleName='vertical h-center'
+            style={{padding: 15, borderTopWidth: 1, backgroundColor: '#DCDCDC'}}
+          >
             <Subtitle>Create New Account</Subtitle>
           </View>
         </TouchableOpacity>
